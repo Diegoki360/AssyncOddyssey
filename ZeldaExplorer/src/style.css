@@ -9,6 +9,12 @@ body {
 
     font-family: Arial, sans-serif;
     text-align: center;
+
+    background-image: url("./img/SheikaWallpaper.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 /* TÍTULO */
