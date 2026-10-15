@@ -47,3 +47,15 @@ export function filtrarPorZona(armas, zona) {
         arma.common_locations?.includes(zona)
     );
 }
+
+export function filtrarPorTipo(armas, tipo) {
+    if (tipo === "") {
+        return armas;
+    }
+
+    return armas.filter(arma => obtenerTipo(arma) === tipo);
+}
+
+export function contarArmas(armas) {
+    return armas.reduce((total, arma) => total + 1, 0);
+}

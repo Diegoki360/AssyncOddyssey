@@ -1,15 +1,30 @@
 import { obtenerArmas } from "./api.js";
 import { mostrarArmas } from "./render.js";
-import { obtenerZonas, filtrarPorZona } from "./logic.js";
 import "./style.css";
+
+import {
+    obtenerZonas,
+    filtrarPorZona,
+    obtenerTipo,
+    filtrarPorTipo,
+    contarArmas
+} from "./logic.js";
 
 async function iniciar() {
 
     const contenedor = document.querySelector("#contenedor");
     const selectorZona = document.querySelector("#zona");
     const botonFiltrar = document.querySelector("#filtrar");
+    const selectorTipo = document.querySelector("#tipo");
+    const contador = document.querySelector("#contador");
 
-    contenedor.textContent = "Cargando armas...";
+    contenedor.replaceChildren();
+
+    const cargando = document.createElement("p");
+    cargando.classList.add("cargando");
+    cargando.textContent = "Conectando con la tableta Sheikah...";
+
+    contenedor.append(cargando);
 
     try {
         const armas = await obtenerArmas("botw");
@@ -27,16 +42,33 @@ async function iniciar() {
             selectorZona.append(opcion);
         });
 
+        const tipos = [...new Set(armas.map(arma => obtenerTipo(arma)))];
+
+        tipos.forEach(tipo => {
+            const opcion = document.createElement("option");
+            opcion.value = tipo;
+            opcion.textContent = tipo;
+            selectorTipo.append(opcion);
+        });
+
+        contador.textContent = `Equipamiento encontrado: ${contarArmas(armas)}`;
+
         // Aplicamos el filtro al pulsar el botón
         botonFiltrar.addEventListener("click", () => {
             const zonaSeleccionada = selectorZona.value;
+            const tipoSeleccionado = selectorTipo.value;
 
-            const armasFiltradas = filtrarPorZona(
-                armas,
-                zonaSeleccionada
+            const armasPorZona = filtrarPorZona(armas, zonaSeleccionada);
+
+            const armasFiltradas = filtrarPorTipo(
+                armasPorZona,
+                tipoSeleccionado
             );
 
             mostrarArmas(armasFiltradas);
+
+            contador.textContent =
+            `Equipamiento encontrado: ${contarArmas(armasFiltradas)}`;
         });
 
     } catch (error) {

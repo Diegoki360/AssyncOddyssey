@@ -162,3 +162,26 @@ label[for="zona"] {
     font-size: 17px;
     font-weight: bold;
 }
+
+#tipo {
+    background-color: #101c25;
+    color: #70f2ff;
+    border: 2px solid #26d9ee;
+    border-radius: 8px;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 10px;
+}
+
+label[for="tipo"] {
+    color: #70f2ff;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+#contador {
+    color: #70f2ff;
+    font-size: 18px;
+    margin: 20px;
+}

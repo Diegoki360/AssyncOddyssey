@@ -10,5 +10,9 @@ export async function obtenerArmas() {
 
     const datos = await respuesta.json();
 
+    if (!Array.isArray(datos.data)) {
+        throw new Error("La API no ha devuelto una lista válida");
+    }
+
     return datos.data;
 }
