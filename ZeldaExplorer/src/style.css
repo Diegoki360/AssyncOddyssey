@@ -1,53 +1,164 @@
+/* ESTILO GENERAL */
+
 body {
     margin: 0;
     padding: 30px;
+
+    background-color: #101c25;
+    color: #e0f7fa;
+
     font-family: Arial, sans-serif;
-    background-color: #141c18;
-    color: #f5f0dc;
+    text-align: center;
 }
+
+/* TÍTULO */
 
 h1 {
-    color: #d4af37;
-    text-align: center;
+    color: #70f2ff;
+    font-size: 42px;
+    text-shadow: 0 0 15px #26d9ee;
 }
 
-body > p {
-    text-align: center;
+header p {
+    color: #9cbac4;
+    font-size: 18px;
 }
+
+/* CONTENEDOR DE ARMAS */
 
 #contenedor {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px;
-    margin-top: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
+
+    max-width: 1400px;
+    margin: 35px auto;
 }
 
+/* TARJETAS */
+
 .tarjeta {
-    background-color: #24352c;
-    border: 1px solid #6c804d;
+    background-color: #182d38;
+
+    border: 2px solid #26d9ee;
     border-radius: 12px;
-    padding: 15px;
-    transition: transform 0.2s;
+
+    padding: 20px;
+    text-align: left;
+
+    box-shadow: 0 0 12px #00cfff33;
+    transition: 0.2s;
 }
 
 .tarjeta:hover {
     transform: translateY(-5px);
+    box-shadow: 0 0 20px #26d9ee88;
 }
+
+/* IMÁGENES */
 
 .tarjeta img {
     width: 100%;
-    height: 180px;
+    height: 220px;
+
     object-fit: contain;
     border-radius: 8px;
-    background-color: #18251e;
+
+    background-color: #0c1720;
 }
 
+/* NOMBRE DEL ARMA */
+
 .tarjeta h3 {
-    color: #e8c76a;
+    color: #70f2ff;
+    font-size: 22px;
     text-transform: capitalize;
 }
 
+/* ESTADÍSTICAS */
+
 .tarjeta p {
-    font-size: 14px;
+    color: #d4e7ec;
+    font-size: 15px;
     line-height: 1.5;
+}
+
+/* DETALLES DESPLEGABLES */
+
+.tarjeta details {
+    margin-top: 15px;
+    padding-top: 12px;
+
+    border-top: 1px solid #326274;
+}
+
+.tarjeta summary {
+    color: #26d9ee;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.tarjeta summary:hover {
+    color: #ffffff;
+}
+
+/* FILTRO DE ZONAS */
+
+#zona {
+    background-color: #101c25;
+    color: #70f2ff;
+
+    border: 2px solid #26d9ee;
+    border-radius: 8px;
+
+    padding: 10px 15px;
+    font-size: 16px;
+
+    cursor: pointer;
+    margin: 10px;
+}
+
+#zona:hover {
+    border-color: #70f2ff;
+}
+
+#zona:focus {
+    outline: 2px solid #70f2ff;
+}
+
+/* BOTÓN FILTRAR */
+
+#filtrar {
+    background-color: #168da5;
+    color: #ffffff;
+
+    border: 2px solid #26d9ee;
+    border-radius: 8px;
+
+    padding: 10px 22px;
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+#filtrar:hover {
+    background-color: #26d9ee;
+    border-color: #70f2ff;
+    color: #101c25;
+
+    transform: scale(1.05);
+}
+
+#filtrar:active {
+    transform: scale(0.98);
+}
+
+/* ETIQUETA DEL FILTRO */
+
+label[for="zona"] {
+    color: #70f2ff;
+    font-size: 17px;
+    font-weight: bold;
 }

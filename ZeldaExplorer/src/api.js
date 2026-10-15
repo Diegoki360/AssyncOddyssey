@@ -1,9 +1,7 @@
-const URL = "https://api.hyrule-compendium.com/v3/compendium/category/equipment";
-
-export async function obtenerArmas(juego = "botw") {
+export async function obtenerArmas() {
 
     const respuesta = await fetch(
-        `${URL}?game=${juego}`
+        "https://api.hyrule-compendium.com/v3/compendium/category/equipment?game=botw"
     );
 
     if (!respuesta.ok) {

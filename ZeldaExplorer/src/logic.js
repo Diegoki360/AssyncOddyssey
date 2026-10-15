@@ -18,6 +18,7 @@ export function obtenerTipo(arma) {
 
     if (nombre.includes("claymore") ||
         nombre.includes("crusher") ||
+        nombre.includes("longsword") ||
         nombre.includes("greatsword")) {
         return "Arma a dos manos";
     }
@@ -29,4 +30,20 @@ export function obtenerTipo(arma) {
     }
 
     return "Otro equipamiento";
+}
+
+export function obtenerZonas(armas) {
+    const zonas = armas.flatMap(arma => arma.common_locations ?? []);
+
+    return [...new Set(zonas)].toSorted();
+}
+
+export function filtrarPorZona(armas, zona) {
+    if (zona === "") {
+        return armas;
+    }
+
+    return armas.filter(arma =>
+        arma.common_locations?.includes(zona)
+    );
 }

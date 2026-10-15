@@ -3,7 +3,7 @@ import { obtenerTipo } from "./logic.js";
 export function mostrarArmas(armas) {
 
     const contenedor = document.querySelector("#contenedor");
-    contenedor.replaceChildren();
+    contenedor.replaceChildren(); // Limpiar el contenedor antes de mostrar las armas
 
     if (armas.length === 0) {
         contenedor.textContent = "No se encontraron armas";
@@ -28,8 +28,8 @@ export function mostrarArmas(armas) {
         // Propiedades del equipamiento
         const propiedades = arma.properties ?? {};
 
-       const tipo = document.createElement("p");
-tipo.textContent = `Tipo: ${obtenerTipo(arma)}`;
+        const tipo = document.createElement("p");
+        tipo.textContent = `Tipo: ${obtenerTipo(arma)}`;
 
         const ataque = document.createElement("p");
         ataque.textContent =
@@ -38,10 +38,6 @@ tipo.textContent = `Tipo: ${obtenerTipo(arma)}`;
         const defensa = document.createElement("p");
         defensa.textContent =
             `Defensa: ${propiedades.defense ?? "No disponible"}`;
-
-        const efecto = document.createElement("p");
-        efecto.textContent =
-            `Efecto: ${propiedades.effect || "Ninguno especificado"}`;
 
         // Sección de detalles desplegable
         const detalles = document.createElement("details");
@@ -70,7 +66,6 @@ tipo.textContent = `Tipo: ${obtenerTipo(arma)}`;
             tipo,
             ataque,
             defensa,
-            efecto,
             detalles
         );
 
