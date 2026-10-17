@@ -223,3 +223,23 @@ label[for="tipo"] {
     max-width: 1000px;
     line-height: 1.8;
 }
+
+#busqueda {
+    background-color: #101c25;
+    color: #70f2ff;
+    border: 2px solid #26d9ee;
+    border-radius: 8px;
+    padding: 10px 15px;
+    font-size: 16px;
+    margin: 10px;
+}
+
+#busqueda::placeholder {
+    color: #9cbac4;
+}
+
+label[for="busqueda"] {
+    color: #70f2ff;
+    font-size: 17px;
+    font-weight: bold;
+}

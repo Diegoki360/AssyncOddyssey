@@ -11,7 +11,8 @@ import {
     filtrarPorZona,
     obtenerTipo,
     filtrarPorTipo,
-    contarPorTipo
+    contarPorTipo,
+    filtrarPorNombre
 } from "./logic.js";
 
 async function iniciar() {
@@ -21,6 +22,7 @@ async function iniciar() {
     const botonFiltrar = document.querySelector("#filtrar");
     const selectorTipo = document.querySelector("#tipo");
     const resumenTipos = document.querySelector("#resumenTipos");
+    const buscador = document.querySelector("#busqueda");
 
     mostrarCarga(contenedor);
 
@@ -55,15 +57,15 @@ async function iniciar() {
 
         // Aplicamos el filtro al pulsar el botón
         botonFiltrar.addEventListener("click", () => {
-            const zonaSeleccionada = selectorZona.value;
-            const tipoSeleccionado = selectorTipo.value;
+
+             const zonaSeleccionada = selectorZona.value;
+             const tipoSeleccionado = selectorTipo.value;
 
             const armasPorZona = filtrarPorZona(armas, zonaSeleccionada);
 
-            const armasFiltradas = filtrarPorTipo(
-                armasPorZona,
-                tipoSeleccionado
-            );
+            const armasPorTipo = filtrarPorTipo(armasPorZona,tipoSeleccionado);
+
+            const armasFiltradas = filtrarPorNombre(armasPorTipo,buscador.value);
 
             mostrarArmas(armasFiltradas);
         });

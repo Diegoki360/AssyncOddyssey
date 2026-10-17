@@ -70,3 +70,11 @@ export function contarPorTipo(armas) {
     }, {});
 }
 
+export function filtrarPorNombre(armas, texto) {
+    const busqueda = texto.toLowerCase().trim();
+
+    return armas.filter(arma =>
+        (arma.name ?? "").toLowerCase().includes(busqueda)
+    );
+}
+
