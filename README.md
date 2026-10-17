@@ -1,66 +1,39 @@
-# Zelda Armory
+## Verificación
 
-## Descripción del proyecto
+Para comprobar el funcionamiento de Zelda Armory se han realizado las siguientes pruebas:
 
-Zelda Armory es una aplicación web desarrollada con JavaScript y Vite que permite consultar el equipamiento de *The Legend of Zelda: Breath of the Wild*.
+- Carga del equipamiento desde la API de Hyrule Compendium.
+- Filtrado de armas por zona, tipo y nombre.
+- Combinación de varios filtros simultáneamente.
+- Comprobación del contador y del resumen de equipamiento por tipo.
+- Búsquedas sin resultados.
+- Comprobación de la caché de `localStorage`, verificando que evita peticiones repetidas durante una hora.
+- Prueba de errores de conexión y del botón de reintento.
 
-La aplicación obtiene información de la API pública Hyrule Compendium y muestra los objetos mediante tarjetas con sus imágenes, nombres, estadísticas, descripciones y localizaciones.
+**Resultado:** Todas las pruebas anteriores han sido superadas con éxito, la web se resuelve correctamente ante errores.
 
-También permite filtrar el equipamiento según las zonas de Hyrule en las que aparece.
+## Trabajo manual
 
-## Instalación y ejecución
+El proyecto se ha desarrollado utilizando JavaScript, HTML y CSS.
 
-Para ejecutar el proyecto es necesario tener Node.js instalado.
+El trabajo incluye la organización de módulos, la integración de la API, la creación dinámica de tarjetas mediante el DOM, la implementación de filtros, la transformación de datos con métodos de arrays y el diseño visual inspirado en la tableta Sheikah de The Legend of Zelda.
 
-1. Descargar o clonar el repositorio.
-2. Abrir una terminal en la carpeta `ZeldaExplorer`.
-3. Ejecutar `npm install` para instalar las dependencias.
-4. Ejecutar `npm run dev` para iniciar Vite.
-5. Abrir en el navegador la dirección local indicada por Vite.
+**Uso de IA:**  Durante el desarrollo del proyecto he utilizado ChatGPT como herramienta de apoyo para resolver dudas sobre JavaScript y comprender mejor algunos conceptos, especialmente el uso de async/await, fetch, las promesas, los módulos y los métodos de transformación de arrays como map(), filter() y reduce().
 
-## Tecnologías utilizadas
+También he utilizado la IA para revisar errores en el código, identificar posibles mejoras en la organización de los módulos y reforzar la gestión de errores, los filtros y el almacenamiento en localStorage.
 
-- HTML y CSS para la estructura y el diseño.
-- JavaScript para la lógica y la manipulación del DOM.
-- Vite como herramienta de desarrollo.
-- Fetch API y async/await para consultar la API.
-- Módulos ES para organizar el código.
+El desarrollo del proyecto se ha realizado de forma progresiva, intentando comprender el funcionamiento de cada parte antes de incorporarla. He participado en las decisiones sobre la estructura, las funcionalidades y el diseño visual de la aplicación, utilizando la IA como apoyo tanto para aprender como para implementar y corregir determinadas partes del código.GG
 
-## Organización del proyecto
+## Autopsia
 
-- `api.js`: realiza la petición a la API.
-- `logic.js`: contiene las funciones de clasificación y filtrado.
-- `render.js`: crea y muestra las tarjetas mediante el DOM.
-- `main.js`: coordina la carga de datos y los eventos de la interfaz.
-- `style.css`: define los estilos visuales.
+**Decisión 1: Clasificación de las armas a partir de sus nombres.**
 
-## Decisiones de desarrollo
+Se ha decidido identificar el tipo de equipamiento buscando palabras clave en el nombre de cada objeto, como `shield`, `bow` o `sword`.
 
-Se eligió Hyrule Compendium por su relación con el universo Zelda y porque permite trabajar con datos reales obtenidos de una API.
+Esta solución permite clasificar el equipamiento sin depender de una propiedad específica de la API, pero tiene una limitación: algunos objetos podrían clasificarse incorrectamente si su nombre no contiene las palabras previstas.
 
-El código se dividió en módulos para separar las peticiones de red, el procesamiento de los datos y su representación en pantalla.
+**Decisión 2: Uso de localStorage para almacenar los datos de la API.**
 
-Se decidió utilizar métodos de arrays como `map()`, `flatMap()` y `filter()` para trabajar con el equipamiento y sus localizaciones.
+Se ha implementado una caché de una hora para reducir las peticiones a la API y acelerar las recargas de la página.
 
-La interfaz utiliza una estética inspirada en la tecnología Sheikah de Breath of the Wild.
-
-## Uso de IA
-
-Durante el desarrollo se utilizó ChatGPT como herramienta de apoyo para comprender conceptos de JavaScript, resolver dudas y proponer implementaciones.
-
-Entre las consultas realizadas estuvieron:
-
-- «¿Por qué utilizamos flatMap para obtener las localizaciones de las armas?»
-- «Añadamos un botón que me permita filtrar por zona en la que aparece».
-
-La herramienta también propuso fragmentos de código y estilos CSS para el filtro de localizaciones.
-
-**Verificación:** [Explicar aquí qué funcionalidades probaste personalmente en el navegador y qué errores corregiste.]
-
-**Trabajo manual:** [Indicar aquí qué partes escribiste, adaptaste o modificaste por tu cuenta. No atribuirte código generado directamente por IA.]
-
-## Limitaciones
-
-La aplicación necesita conexión a Internet para consultar la API. Si el servicio no responde, no se pueden cargar los datos.
-
-Algunos objetos pueden carecer de estadísticas o localizaciones, por lo que se muestran valores alternativos cuando falta información.
+Esta decisión mejora el rendimiento, pero tiene el inconveniente de que los datos pueden quedar desactualizados durante ese periodo. Además, el almacenamiento disponible en el navegador es limitado.
