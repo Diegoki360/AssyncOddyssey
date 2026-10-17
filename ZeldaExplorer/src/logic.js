@@ -69,3 +69,4 @@ export function contarPorTipo(armas) {
         return contador;
     }, {});
 }
+

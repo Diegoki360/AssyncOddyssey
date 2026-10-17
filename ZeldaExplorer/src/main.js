@@ -1,5 +1,9 @@
 import { obtenerArmas } from "./api.js";
-import { mostrarArmas } from "./render.js";
+import {
+    mostrarArmas,
+    mostrarCarga,
+    mostrarError
+} from "./render.js";
 import "./style.css";
 
 import {
@@ -77,20 +81,7 @@ async function iniciar() {
         });
 
     } catch (error) {
-        contenedor.replaceChildren();
-
-        const mensaje = document.createElement("p");
-        mensaje.classList.add("error");
-        mensaje.textContent = `Error al cargar las armas: ${error.message}`;
-
-        const botonReintentar = document.createElement("button");
-        botonReintentar.textContent = "Reintentar";
-        botonReintentar.id = "reintentar";
-
-        botonReintentar.addEventListener("click", iniciar);
-
-        contenedor.append(mensaje, botonReintentar);
-
+        mostrarError(contenedor, error, iniciar);
         console.error(error);
     }
 }

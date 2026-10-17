@@ -1,5 +1,30 @@
 import { obtenerTipo } from "./logic.js";
 
+export function mostrarCarga(contenedor) {
+    contenedor.replaceChildren();
+
+    const mensaje = document.createElement("p");
+    mensaje.classList.add("cargando");
+    mensaje.textContent = "Conectando con la tableta Sheikah...";
+
+    contenedor.append(mensaje);
+}
+
+export function mostrarError(contenedor, error, reintentar) {
+    contenedor.replaceChildren();
+
+    const mensaje = document.createElement("p");
+    mensaje.classList.add("error");
+    mensaje.textContent = `Error al cargar las armas: ${error.message}`;
+
+    const boton = document.createElement("button");
+    boton.id = "reintentar";
+    boton.textContent = "Reintentar";
+    boton.addEventListener("click", reintentar);
+
+    contenedor.append(mensaje, boton);
+}
+
 export function mostrarArmas(armas) {
 
     const contenedor = document.querySelector("#contenedor");
