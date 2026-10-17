@@ -42,9 +42,20 @@ export function mostrarArmas(armas) {
 
         // Imagen
         const imagen = document.createElement("img");
-        imagen.src = arma.image;
-        imagen.alt = arma.name;
+
+        imagen.alt = arma.name ?? "Equipamiento sin nombre";
         imagen.loading = "lazy";
+
+        if (arma.image) {
+            imagen.src = arma.image;
+        } else {
+            imagen.alt = "Imagen no disponible";
+        }
+
+        imagen.onerror = () => {
+            imagen.removeAttribute("src");
+            imagen.alt = "Imagen no disponible";
+        };
 
         // Nombre
         const nombre = document.createElement("h3");

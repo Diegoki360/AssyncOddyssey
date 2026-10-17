@@ -1,23 +1,27 @@
-/* ESTILO GENERAL */
+/* ==================================================
+   1. ESTILOS GENERALES
+   ================================================== */
 
 body {
     margin: 0;
     padding: 30px;
 
     background-color: #101c25;
-    color: #e0f7fa;
-
-    font-family: Arial, sans-serif;
-    text-align: center;
-
     background-image: url("./img/SheikaWallpaper.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
+
+    color: #e0f7fa;
+    font-family: Arial, sans-serif;
+    text-align: center;
 }
 
-/* TÍTULO */
+
+/* ==================================================
+   2. CABECERA Y TÍTULOS
+   ================================================== */
 
 h1 {
     color: #70f2ff;
@@ -30,87 +34,26 @@ header p {
     font-size: 18px;
 }
 
-/* CONTENEDOR DE ARMAS */
 
-#contenedor {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 25px;
+/* ==================================================
+   3. FILTROS Y BÚSQUEDA
+   ================================================== */
 
-    max-width: 1400px;
-    margin: 35px auto;
-}
+/* Etiquetas de los filtros */
 
-/* TARJETAS */
-
-.tarjeta {
-    background-color: #182d38;
-
-    border: 2px solid #26d9ee;
-    border-radius: 12px;
-
-    padding: 20px;
-    text-align: left;
-
-    box-shadow: 0 0 12px #00cfff33;
-    transition: 0.2s;
-}
-
-.tarjeta:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 0 20px #26d9ee88;
-}
-
-/* IMÁGENES */
-
-.tarjeta img {
-    width: 100%;
-    height: 220px;
-
-    object-fit: contain;
-    border-radius: 8px;
-
-    background-color: #0c1720;
-}
-
-/* NOMBRE DEL ARMA */
-
-.tarjeta h3 {
+label[for="zona"],
+label[for="tipo"],
+label[for="busqueda"] {
     color: #70f2ff;
-    font-size: 22px;
-    text-transform: capitalize;
-}
-
-/* ESTADÍSTICAS */
-
-.tarjeta p {
-    color: #d4e7ec;
-    font-size: 15px;
-    line-height: 1.5;
-}
-
-/* DETALLES DESPLEGABLES */
-
-.tarjeta details {
-    margin-top: 15px;
-    padding-top: 12px;
-
-    border-top: 1px solid #326274;
-}
-
-.tarjeta summary {
-    color: #26d9ee;
-    cursor: pointer;
+    font-size: 17px;
     font-weight: bold;
 }
 
-.tarjeta summary:hover {
-    color: #ffffff;
-}
+/* Selectores y campo de búsqueda */
 
-/* FILTRO DE ZONAS */
-
-#zona {
+#zona,
+#tipo,
+#busqueda {
     background-color: #101c25;
     color: #70f2ff;
 
@@ -119,10 +62,17 @@ header p {
 
     padding: 10px 15px;
     font-size: 16px;
-
-    cursor: pointer;
     margin: 10px;
 }
+
+/* Selectores desplegables */
+
+#zona,
+#tipo {
+    cursor: pointer;
+}
+
+/* Interacción con el selector de zonas */
 
 #zona:hover {
     border-color: #70f2ff;
@@ -132,7 +82,16 @@ header p {
     outline: 2px solid #70f2ff;
 }
 
-/* BOTÓN FILTRAR */
+/* Texto de ejemplo del buscador */
+
+#busqueda::placeholder {
+    color: #9cbac4;
+}
+
+
+/* ==================================================
+   4. BOTÓN DE FILTRADO
+   ================================================== */
 
 #filtrar {
     background-color: #168da5;
@@ -161,30 +120,12 @@ header p {
     transform: scale(0.98);
 }
 
-/* ETIQUETA DEL FILTRO */
 
-label[for="zona"] {
-    color: #70f2ff;
-    font-size: 17px;
-    font-weight: bold;
-}
+/* ==================================================
+   5. CONTADORES Y RESUMEN DE RESULTADOS
+   ================================================== */
 
-#tipo {
-    background-color: #101c25;
-    color: #70f2ff;
-    border: 2px solid #26d9ee;
-    border-radius: 8px;
-    padding: 10px 15px;
-    font-size: 16px;
-    cursor: pointer;
-    margin: 10px;
-}
-
-label[for="tipo"] {
-    color: #70f2ff;
-    font-size: 17px;
-    font-weight: bold;
-}
+/* Número total de armas encontradas */
 
 #contador {
     color: #70f2ff;
@@ -192,7 +133,120 @@ label[for="tipo"] {
     margin: 20px;
 }
 
-/* ETIQUETA DEL ERROR */
+/* Cantidad de armas por tipo */
+
+#resumenTipos {
+    color: #70f2ff;
+    font-size: 15px;
+
+    margin: 10px auto 20px;
+    max-width: 1000px;
+    line-height: 1.8;
+}
+
+
+/* ==================================================
+   6. CONTENEDOR DE EQUIPAMIENTO
+   ================================================== */
+
+#contenedor {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
+
+    max-width: 1400px;
+    margin: 35px auto;
+}
+
+
+/* ==================================================
+   7. TARJETAS DE EQUIPAMIENTO
+   ================================================== */
+
+/* Aspecto general de las tarjetas */
+
+.tarjeta {
+    background-color: #182d38;
+
+    border: 2px solid #26d9ee;
+    border-radius: 12px;
+
+    padding: 20px;
+    text-align: left;
+
+    box-shadow: 0 0 12px #00cfff33;
+    transition: 0.2s;
+}
+
+/* Efecto al pasar el ratón */
+
+.tarjeta:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px #26d9ee88;
+}
+
+/* Imágenes del equipamiento */
+
+.tarjeta img {
+    width: 100%;
+    height: 220px;
+
+    object-fit: contain;
+    border-radius: 8px;
+
+    background-color: #0c1720;
+}
+
+/* Nombre del equipamiento */
+
+.tarjeta h3 {
+    color: #70f2ff;
+    font-size: 22px;
+    text-transform: capitalize;
+}
+
+/* Estadísticas del equipamiento */
+
+.tarjeta p {
+    color: #d4e7ec;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+
+/* ==================================================
+   8. DETALLES DESPLEGABLES
+   ================================================== */
+
+/* Contenedor de los detalles */
+
+.tarjeta details {
+    margin-top: 15px;
+    padding-top: 12px;
+
+    border-top: 1px solid #326274;
+}
+
+/* Botón para mostrar detalles */
+
+.tarjeta summary {
+    color: #26d9ee;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* Efecto al pasar el ratón */
+
+.tarjeta summary:hover {
+    color: #ffffff;
+}
+
+
+/* ==================================================
+   9. MENSAJES DE ERROR Y REINTENTO
+   ================================================== */
+
+/* Mensaje de error */
 
 .error {
     color: #ff7777;
@@ -201,45 +255,23 @@ label[for="tipo"] {
     text-align: center;
 }
 
+/* Botón de reintento */
+
 #reintentar {
     background-color: #168da5;
     color: white;
+
     border: 2px solid #26d9ee;
     border-radius: 8px;
+
     padding: 12px 24px;
     cursor: pointer;
     font-size: 16px;
 }
 
+/* Efecto al pasar el ratón */
+
 #reintentar:hover {
     background-color: #26d9ee;
     color: #101c25;
-}
-
-#resumenTipos {
-    color: #70f2ff;
-    font-size: 15px;
-    margin: 10px auto 20px;
-    max-width: 1000px;
-    line-height: 1.8;
-}
-
-#busqueda {
-    background-color: #101c25;
-    color: #70f2ff;
-    border: 2px solid #26d9ee;
-    border-radius: 8px;
-    padding: 10px 15px;
-    font-size: 16px;
-    margin: 10px;
-}
-
-#busqueda::placeholder {
-    color: #9cbac4;
-}
-
-label[for="busqueda"] {
-    color: #70f2ff;
-    font-size: 17px;
-    font-weight: bold;
 }
