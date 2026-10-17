@@ -20,16 +20,9 @@ async function iniciar() {
     const selectorZona = document.querySelector("#zona");
     const botonFiltrar = document.querySelector("#filtrar");
     const selectorTipo = document.querySelector("#tipo");
-    const contador = document.querySelector("#contador");
     const resumenTipos = document.querySelector("#resumenTipos");
 
-    contenedor.replaceChildren();
-
-    const cargando = document.createElement("p");
-    cargando.classList.add("cargando");
-    cargando.textContent = "Conectando con la tableta Sheikah...";
-
-    contenedor.append(cargando);
+    mostrarCarga(contenedor);
 
     try {
         const armas = await obtenerArmas("botw");
@@ -56,8 +49,6 @@ async function iniciar() {
             selectorTipo.append(opcion);
         });
 
-        contador.textContent = `Equipamiento encontrado: ${contarPorTipo(armas)}`;
-
         const cantidades = contarPorTipo(armas);
 
         resumenTipos.textContent = Object.entries(cantidades).map(([tipo, cantidad]) => `${tipo}: ${cantidad}`).join(" | ");
@@ -75,9 +66,6 @@ async function iniciar() {
             );
 
             mostrarArmas(armasFiltradas);
-
-            contador.textContent =
-            `Equipamiento encontrado: ${contarPorTipo(armasFiltradas)}`;
         });
 
     } catch (error) {
