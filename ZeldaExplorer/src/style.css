@@ -191,3 +191,35 @@ label[for="tipo"] {
     font-size: 18px;
     margin: 20px;
 }
+
+/* ETIQUETA DEL ERROR */
+
+.error {
+    color: #ff7777;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+}
+
+#reintentar {
+    background-color: #168da5;
+    color: white;
+    border: 2px solid #26d9ee;
+    border-radius: 8px;
+    padding: 12px 24px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#reintentar:hover {
+    background-color: #26d9ee;
+    color: #101c25;
+}
+
+#resumenTipos {
+    color: #70f2ff;
+    font-size: 15px;
+    margin: 10px auto 20px;
+    max-width: 1000px;
+    line-height: 1.8;
+}

@@ -1,6 +1,6 @@
 export function obtenerTipo(arma) {
 
-    const nombre = arma.name.toLowerCase();
+    const nombre = (arma.name ?? "").toLowerCase();
 
     if (nombre.includes("shield")) {
         return "Escudo";
@@ -56,6 +56,16 @@ export function filtrarPorTipo(armas, tipo) {
     return armas.filter(arma => obtenerTipo(arma) === tipo);
 }
 
-export function contarArmas(armas) {
-    return armas.reduce((total, arma) => total + 1, 0);
+export function contarPorTipo(armas) {
+    return armas.reduce((contador, arma) => {
+        const tipo = obtenerTipo(arma);
+
+        if (contador[tipo] === undefined) {
+            contador[tipo] = 0;
+        }
+
+        contador[tipo]++;
+
+        return contador;
+    }, {});
 }

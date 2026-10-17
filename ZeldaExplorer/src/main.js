@@ -7,7 +7,7 @@ import {
     filtrarPorZona,
     obtenerTipo,
     filtrarPorTipo,
-    contarArmas
+    contarPorTipo
 } from "./logic.js";
 
 async function iniciar() {
@@ -17,6 +17,7 @@ async function iniciar() {
     const botonFiltrar = document.querySelector("#filtrar");
     const selectorTipo = document.querySelector("#tipo");
     const contador = document.querySelector("#contador");
+    const resumenTipos = document.querySelector("#resumenTipos");
 
     contenedor.replaceChildren();
 
@@ -51,7 +52,11 @@ async function iniciar() {
             selectorTipo.append(opcion);
         });
 
-        contador.textContent = `Equipamiento encontrado: ${contarArmas(armas)}`;
+        contador.textContent = `Equipamiento encontrado: ${contarPorTipo(armas)}`;
+
+        const cantidades = contarPorTipo(armas);
+
+        resumenTipos.textContent = Object.entries(cantidades).map(([tipo, cantidad]) => `${tipo}: ${cantidad}`).join(" | ");
 
         // Aplicamos el filtro al pulsar el botón
         botonFiltrar.addEventListener("click", () => {
@@ -68,11 +73,24 @@ async function iniciar() {
             mostrarArmas(armasFiltradas);
 
             contador.textContent =
-            `Equipamiento encontrado: ${contarArmas(armasFiltradas)}`;
+            `Equipamiento encontrado: ${contarPorTipo(armasFiltradas)}`;
         });
 
     } catch (error) {
-        contenedor.textContent = "Error al cargar las armas";
+        contenedor.replaceChildren();
+
+        const mensaje = document.createElement("p");
+        mensaje.classList.add("error");
+        mensaje.textContent = `Error al cargar las armas: ${error.message}`;
+
+        const botonReintentar = document.createElement("button");
+        botonReintentar.textContent = "Reintentar";
+        botonReintentar.id = "reintentar";
+
+        botonReintentar.addEventListener("click", iniciar);
+
+        contenedor.append(mensaje, botonReintentar);
+
         console.error(error);
     }
 }
